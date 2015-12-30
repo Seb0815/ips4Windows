@@ -56,7 +56,7 @@
  				if(!$found) { 
  					$hooks[] = Array("ips4WNSHook" => "/hook/ips4WinDeviceRegistration", "TargetID" => $TargetID); 
  				} 
- 				IPS_SetProperty($ids[0], "Hooks", json_encode($hooks)); 
+ 				IPS_SetProperty($ids[0], "ips4WNSHook", json_encode($hooks)); 
  				IPS_ApplyChanges($ids[0]); 
  			} 
  		} 

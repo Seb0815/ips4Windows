@@ -24,6 +24,13 @@
 				$this->authToken = $data[1];
 			}
     	}
+
+		public function Create() 
+		{ 
+ 			//Never delete this line! 
+ 			parent::Create(); 
+ 		} 
+
 	
 		public function ApplyChanges() 
 		{ 
@@ -31,7 +38,7 @@
  				parent::ApplyChanges(); 
  			 
  				$sid = $this->RegisterScript("ips4Win-WNSHook", "ips4Win-WNSHook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/WindowsNotifications/module.php\");\n(new WindowsNotifications(".$this->InstanceID."))->ProcessHookData();"); 
- 				$this->RegisterHook("/hook/ips4Win-DeviceRegistration", $sid); 
+  				$this->RegisterHook("/hook/ips4Win-DeviceRegistration", $sid); 
 		} 
 
 		private function RegisterHook($Hook, $TargetID) 

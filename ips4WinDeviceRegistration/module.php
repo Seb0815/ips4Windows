@@ -8,7 +8,7 @@
             parent::__construct($InstanceID);
  
             // Selbsterstellter Code
-	 }
+		 }
 		     	
 
 		public function Create() 
@@ -64,7 +64,7 @@
  				return; 
  			} 
  			 
- 			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, "ips4WinDevice"), "Device-".utf8_decode($_POST['name'])); 
+ 			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, "ips4WinDevice", "Device-".utf8_decode($_POST['name'])); 
  			SetValue($this->CreateVariableByIdent($deviceID, "SecChannel", "SecChannel", 3), utf8_decode($_POST['SecChannel'])); 
  			SetValue($this->CreateVariableByIdent($deviceID, "Name", "Name", 3), utf8_decode($_POST['name'])); 
 			SetValue($this->CreateVariableByIdent($deviceID, "accessToken", "accessToken", 3), utf8_decode($_POST['accessToken'])); 

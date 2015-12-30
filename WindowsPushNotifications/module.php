@@ -45,7 +45,7 @@
  				$hooks = json_decode(IPS_GetProperty($ids[0], "ips4WNSHook"), true); 
  				$found = false; 
  				foreach($hooks as $index => $hook) { 
- 					if($hook['Hook'] == "/hook/ips4WinDeviceRegistration") 
+ 					if($hook['ips4WNSHook'] == "/hook/ips4WinDeviceRegistration") 
 					{ 
  						if($hook['TargetID'] == $TargetID) 
  							return; 
@@ -54,7 +54,7 @@
  					} 
  				} 
  				if(!$found) { 
- 					$hooks[] = Array("Hook" => "/hook/ips4WinDeviceRegistration", "TargetID" => $TargetID); 
+ 					$hooks[] = Array("ips4WNSHook" => "/hook/ips4WinDeviceRegistration", "TargetID" => $TargetID); 
  				} 
  				IPS_SetProperty($ids[0], "Hooks", json_encode($hooks)); 
  				IPS_ApplyChanges($ids[0]); 

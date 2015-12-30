@@ -2,19 +2,19 @@
 	
 	class WindowsNotifications extends IPSModule 
 	{
-   	private $header1 = 'Content-Type: text/xml';
+   		private $header1 = 'Content-Type: text/xml';
 		private $header2 = 'X-WNS-Type: ';
-   	private $header3 = 'Authorization: Bearer ';
-   	private $header4 = 'X-WNS-Tag: ';
-   	private $deviceURI;
+   		private $header3 = 'Authorization: Bearer ';
+   		private $header4 = 'X-WNS-Tag: ';
+   		private $deviceURI;
     	private $authToken;
     	private $Debug = false;
     	private $WNSMsgToken = "abc";
 
     	function __construct($ObjID)
     	{
- 		// Diese Zeile nicht löschen
-            	parent::__construct($InstanceID);
+ 			// Diese Zeile nicht löschen
+            parent::__construct($InstanceID);
 
 			$deviceToken = GetValueString($ObjID);
 			$data = explode("###",$deviceToken);
@@ -24,11 +24,108 @@
 				$this->authToken = $data[1];
 			}
     	}
+	
+		public function ApplyChanges() 
+		{ 
+				//Never delete this line! 
+ 				parent::ApplyChanges(); 
+ 			 
+ 				$sid = $this->RegisterScript("ips4Win-WNSHook", "ips4Win-WNSHook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/WindowsNotifications/module.php\");\n(new WindowsNotifications(".$this->InstanceID."))->ProcessHookData();"); 
+ 				$this->RegisterHook("/hook/ips4Win-DeviceRegistration", $sid); 
+		} 
+
+		private function RegisterHook($Hook, $TargetID) 
+ 		{ 
+ 			$ids = IPS_GetInstanceListByModuleID("{015A6EB8-D6E5-4B93-B496-0D3F77AE9FE1}"); 
+ 			if(sizeof($ids) > 0) { 
+ 				$hooks = json_decode(IPS_GetProperty($ids[0], "Hooks"), true); 
+ 				$found = false; 
+ 				foreach($hooks as $index => $hook) { 
+ 					if($hook['Hook'] == "/hook/ips4Win-DeviceRegistration") 
+					{ 
+ 						if($hook['TargetID'] == $TargetID) 
+ 							return; 
+ 						$hooks[$index]['TargetID'] = $TargetID; 
+ 						$found = true; 
+ 					} 
+ 				} 
+ 				if(!$found) { 
+ 					$hooks[] = Array("Hook" => "/hook/ips4Win-DeviceRegistration", "TargetID" => $TargetID); 
+ 				} 
+ 				IPS_SetProperty($ids[0], "Hooks", json_encode($hooks)); 
+ 				IPS_ApplyChanges($ids[0]); 
+ 			} 
+ 		} 
+
+		public function ProcessHookData() 
+ 		{ 
+ 			if($_IPS['SENDER'] == "Execute") { 
+ 				echo "This script cannot be used this way."; 
+ 				return; 
+ 			} 
+ 			 
+ 			 
+ 			if(!isset($_POST['device']) || !isset($_POST['id']) || !isset($_POST['name']) || !isset($_POST['accessToken'])) { 
+ 				IPS_LogMessage("WindowsNotifications", "Malformed data: ".print_r($_POST, true)); 
+ 				return; 
+ 			} 
+ 			 
+ 			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, utf8_decode($_POST['id']), "Device"); 
+ 			SetValue($this->CreateVariableByIdent($deviceID, "SecChannel", "SecChannel", 3), utf8_decode($_POST['id'])); 
+ 			SetValue($this->CreateVariableByIdent($deviceID, "Name", "Name", 2), utf8_decode($_POST['name'])); 
+ 			SetValue($this->CreateVariableByIdent($deviceID, "Timestamp", "Timestamp", 1, "~UnixTimestamp"), intval(strtotime($_POST['date']))); 
+ 			 
+
+ 		} 
+
+
+		private function CreateCategoryByIdent($id, $ident, $name) 
+		 { 
+			 $cid = @IPS_GetObjectIDByIdent($ident, $id); 
+			 if($cid === false) 
+			 { 
+				 $cid = IPS_CreateCategory(); 
+				 IPS_SetParent($cid, $id); 
+				 IPS_SetName($cid, $name); 
+				 IPS_SetIdent($cid, $ident); 
+ 			 } 
+ 			 return $cid; 
+ 		} 
+ 		 
+ 		private function CreateVariableByIdent($id, $ident, $name, $type, $profile = "") 
+ 		 { 
+ 			 $vid = @IPS_GetObjectIDByIdent($ident, $id); 
+ 			 if($vid === false) 
+ 			 { 
+ 				 $vid = IPS_CreateVariable($type); 
+ 				 IPS_SetParent($vid, $id); 
+ 				 IPS_SetName($vid, $name); 
+ 				 IPS_SetIdent($vid, $ident); 
+ 				 if($profile != "") 
+ 					IPS_SetVariableCustomProfile($vid, $profile); 
+ 			 } 
+ 			 return $vid; 
+ 		} 
+		 
+		private function CreateInstanceByIdent($id, $ident, $name, $moduleid = "{485D0419-BE97-4548-AA9C-C083EB82E61E}") 
+    	 { 
+			 $iid = @IPS_GetObjectIDByIdent($ident, $id); 
+ 			 if($iid === false) 
+ 			 { 
+ 				 $iid = IPS_CreateInstance($moduleid); 
+ 				 IPS_SetParent($iid, $id); 
+ 				 IPS_SetName($iid, $name); 
+ 				 IPS_SetIdent($iid, $ident); 
+ 			 } 
+ 			 return $iid; 
+ 		} 
+
+
     	
     	public function EnableDebug($Debug)
     	{
     	   $this->Debug = $Debug;
-		}
+	}
 		
 		public function SetWNSMsgToken($Token)
     	{

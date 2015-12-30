@@ -1,6 +1,6 @@
 <?
 	
-	class WindowsNotification extends IPSModule 
+	class WindowsNotifications extends IPSModule 
 	{
    	private $header1 = 'Content-Type: text/xml';
 		private $header2 = 'X-WNS-Type: ';

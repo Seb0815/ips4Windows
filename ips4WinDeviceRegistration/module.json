@@ -1,14 +1,14 @@
 { 
  	"id": "{44D8BE09-743E-484F-A64D-154C4235BE94}", 
- 	"name": "WindowsNotifications" ,
+ 	"name": "ips4WinDeviceRegistration" ,
  	"type": 0, 
  	"vendor": "", 
  	"aliases":  
  	[ 
- 		"WindowsPushNotifications" 
+ 		"ips4WinDeviceRegistration" 
  	], 
  	"parentRequirements": [], 
  	"childRequirements": [], 
  	"implemented": [], 
- 	"prefix": "WNS" 
+ 	"prefix": "ips4WinDev" 
 } 

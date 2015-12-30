@@ -17,10 +17,10 @@
             parent::__construct($InstanceID);
  
             // Selbsterstellter Code
-			
+			$this->deviceURI = "";
+			$this->authToken = "";
          }
-
-    	
+		     	
 
 		public function Create() 
 		{ 

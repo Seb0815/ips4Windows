@@ -1,6 +1,6 @@
 { 
  	"id": "{44D8BE09-743E-484F-A64D-154C4235BE94}", 
- 	"name": "WindowsNotifications" 
+ 	"name": "WindowsNotifications" ,
  	"type": 0, 
  	"vendor": "", 
  	"aliases":  

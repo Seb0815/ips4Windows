@@ -34,18 +34,18 @@
 				//Never delete this line! 
  				parent::ApplyChanges(); 
  			 
- 				$sid = $this->RegisterScript("ips4Win-WNSHook", "ips4Win-WNSHook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/WindowsNotifications/module.php\");\n(new WindowsNotifications(".$this->InstanceID."))->ProcessHookData();"); 
-  				$this->RegisterHook("/hook/ips4Win-DeviceRegistration", $sid); 
+ 				$sid = $this->RegisterScript("ips4WNSHook", "ips4WNSHook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/WindowsNotifications/module.php\");\n(new WindowsNotifications(".$this->InstanceID."))->ProcessHookData();"); 
+  				$this->RegisterHook("/hook/ips4WinDeviceRegistration", $sid); 
 		} 
 
 		private function RegisterHook($Hook, $TargetID) 
  		{ 
  			$ids = IPS_GetInstanceListByModuleID("{015A6EB8-D6E5-4B93-B496-0D3F77AE9FE1}"); 
  			if(sizeof($ids) > 0) { 
- 				$hooks = json_decode(IPS_GetProperty($ids[0], "ips4Win-WNSHook"), true); 
+ 				$hooks = json_decode(IPS_GetProperty($ids[0], "ips4WNSHook"), true); 
  				$found = false; 
  				foreach($hooks as $index => $hook) { 
- 					if($hook['Hook'] == "/hook/ips4Win-DeviceRegistration") 
+ 					if($hook['Hook'] == "/hook/ips4WinDeviceRegistration") 
 					{ 
  						if($hook['TargetID'] == $TargetID) 
  							return; 
@@ -54,7 +54,7 @@
  					} 
  				} 
  				if(!$found) { 
- 					$hooks[] = Array("Hook" => "/hook/ips4Win-DeviceRegistration", "TargetID" => $TargetID); 
+ 					$hooks[] = Array("Hook" => "/hook/ips4WinDeviceRegistration", "TargetID" => $TargetID); 
  				} 
  				IPS_SetProperty($ids[0], "Hooks", json_encode($hooks)); 
  				IPS_ApplyChanges($ids[0]); 

@@ -35,6 +35,7 @@
  				parent::ApplyChanges(); 
  			 
  				$sid = $this->RegisterScript("ips4WNSHook", "ips4WNSHook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/WindowsNotifications/module.php\");\n(new WindowsNotifications(".$this->InstanceID."))->ProcessHookData();"); 
+
   				$this->RegisterHook("/hook/ips4WinDeviceRegistration", $sid); 
 		} 
 

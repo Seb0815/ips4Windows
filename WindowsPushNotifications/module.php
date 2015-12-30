@@ -42,10 +42,10 @@
  		{ 
  			$ids = IPS_GetInstanceListByModuleID("{015A6EB8-D6E5-4B93-B496-0D3F77AE9FE1}"); 
  			if(sizeof($ids) > 0) { 
- 				$hooks = json_decode(IPS_GetProperty($ids[0], "ips4WNSHook"), true); 
+ 				$hooks = json_decode(IPS_GetProperty($ids[0], "Hook"), true); 
  				$found = false; 
  				foreach($hooks as $index => $hook) { 
- 					if($hook['ips4WNSHook'] == "/hook/ips4WinDeviceRegistration") 
+ 					if($hook['Hook'] == "/hook/ips4WinDeviceRegistration") 
 					{ 
  						if($hook['TargetID'] == $TargetID) 
  							return; 
@@ -54,9 +54,9 @@
  					} 
  				} 
  				if(!$found) { 
- 					$hooks[] = Array("ips4WNSHook" => "/hook/ips4WinDeviceRegistration", "TargetID" => $TargetID); 
+ 					$hooks[] = Array("Hook" => "/hook/ips4WinDeviceRegistration", "TargetID" => $TargetID); 
  				} 
- 				IPS_SetProperty($ids[0], "ips4WNSHook", json_encode($hooks)); 
+ 				IPS_SetProperty($ids[0], "Hooks", json_encode($hooks)); 
  				IPS_ApplyChanges($ids[0]); 
  			} 
  		} 

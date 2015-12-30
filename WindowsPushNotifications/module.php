@@ -11,19 +11,16 @@
     	private $Debug = false;
     	private $WNSMsgToken = "abc";
 
-    	function __construct($ObjID)
-    	{
- 			// Diese Zeile nicht löschen
+		 public function __construct($InstanceID) 
+		 {
+            // Diese Zeile nicht löschen
             parent::__construct($InstanceID);
+ 
+            // Selbsterstellter Code
+			
+         }
 
-			$deviceToken = GetValueString($ObjID);
-			$data = explode("###",$deviceToken);
-			if (count($data) > 1)
-			{
-				$this->deviceURI = $data[0];
-				$this->authToken = $data[1];
-			}
-    	}
+    	
 
 		public function Create() 
 		{ 

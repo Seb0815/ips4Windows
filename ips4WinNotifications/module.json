@@ -1,0 +1,14 @@
+{ 
+ 	"id": "{A0E43C0B-E146-4643-8D2C-E57EA77BB97D}", 
+ 	"name": "ips4WinNotifications" ,
+ 	"type": 0, 
+ 	"vendor": "", 
+ 	"aliases":  
+ 	[ 
+ 		"ips4WinNotifications" 
+ 	], 
+ 	"parentRequirements": [], 
+ 	"childRequirements": [], 
+ 	"implemented": [], 
+ 	"prefix": "ips4WNS" 
+} 

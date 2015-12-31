@@ -1,0 +1,14 @@
+{ 
+ 	"id": "{88A1FB1D-68D2-4D17-9276-E5D88311CCA2}", 
+ 	"name": "ips4WinCortana" ,
+ 	"type": 0, 
+ 	"vendor": "", 
+ 	"aliases":  
+ 	[ 
+ 		"ips4WinCortana" 
+ 	], 
+ 	"parentRequirements": [], 
+ 	"childRequirements": [], 
+ 	"implemented": [], 
+ 	"prefix": "ips4WCN" 
+} 

@@ -57,18 +57,18 @@
  				echo "This script cannot be used this way."; 
  				return; 
  			} 
- 			 
- 			 
- 			if(!isset($_POST['device']) || !isset($_POST['name']) || !isset($_POST['accessToken']) || !isset($_POST['SecChannel'])) { 
+ 						 
+ 			if(!isset($_POST['deviceName']) || !isset($_POST['deviceType']) || !isset($_POST['deviceFamily']) || !isset($_POST['SecChannel'])) { 
  				IPS_LogMessage("ips4WinDeviceRegistration", "Malformed data: ".print_r($_POST, true)); 
  				return; 
  			} 
  			 
- 			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, "ips4WinDevice", "Device-".utf8_decode($_POST['name'])); 
+ 			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, "ips4WinDevice", "Device-".utf8_decode($_POST['deviceName'])); 
  			SetValue($this->CreateVariableByIdent($deviceID, "SecChannel", "SecChannel", 3), utf8_decode($_POST['SecChannel'])); 
- 			SetValue($this->CreateVariableByIdent($deviceID, "Name", "Name", 3), utf8_decode($_POST['name'])); 
-			SetValue($this->CreateVariableByIdent($deviceID, "accessToken", "accessToken", 3), utf8_decode($_POST['accessToken'])); 
- 			SetValue($this->CreateVariableByIdent($deviceID, "Timestamp", "Timestamp", 1, "~UnixTimestamp"), intval(strtotime($_POST['date']))); 
+ 			SetValue($this->CreateVariableByIdent($deviceID, "deviceName", "deviceName", 3), utf8_decode($_POST['deviceName'])); 
+			SetValue($this->CreateVariableByIdent($deviceID, "deviceType", "deviceType", 3), utf8_decode($_POST['deviceType'])); 			
+			SetValue($this->CreateVariableByIdent($deviceID, "deviceFamily", "deviceFamily", 3), utf8_decode($_POST['deviceFamily'])); 
+ 			SetValue($this->CreateVariableByIdent($deviceID, "SecChannelExp", "SecChannelExp", 1, "~UnixTimestamp"), intval(strtotime($_POST['SecChannelExp']))); 
  			 
 
  		} 

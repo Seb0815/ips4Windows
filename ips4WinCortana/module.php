@@ -25,8 +25,8 @@
 				//Never delete this line! 
  				parent::ApplyChanges(); 
  			 
-				$vid = $this->RegisterVariableString("ips4Cortana", "CortanaVoiceCommands", "", "" );
-				$sid = $this->RegisterScript("ips4Cortana", "ips4CortanaSprachbefehle", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinCortana/module.php\");\n\n$ipsCortana = new ips4WinCortana(".$vid.");\n//Your code goes here...\n\nipsCortana->AddVoiceCommand(\"schalte das Licht im Wohnzimmer an\");\nipsCortana->AddVoiceCommand(\"schalte das Licht im Wohnzimmer aus\");\nipsCortana->writeCommandList();"); 
+				$vid = $this->RegisterVariableString("ips4CortanaVoiceCommands", "CortanaVoiceCommands", "", "" );
+				$sid = $this->RegisterScript("ips4CortanaVoiceCommandsScript", "ips4CortanaSprachbefehle", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinCortana/module.php\");\n\n$ipsCortana = new ips4WinCortana(".$vid.");\n//Your code goes here...\n\nipsCortana->AddVoiceCommand(\"schalte das Licht im Wohnzimmer an\");\nipsCortana->AddVoiceCommand(\"schalte das Licht im Wohnzimmer aus\");\nipsCortana->writeCommandList();"); 
 
  				$sid = $this->RegisterScript("ips4CortanaHook", "ips4CortanaHook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinCortana/module.php\");\n(new ips4WinCortana(".$this->InstanceID."))->ProcessHookData();"); 
 

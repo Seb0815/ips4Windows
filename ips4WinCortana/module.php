@@ -16,7 +16,7 @@
  			//Never delete this line! 
  			parent::Create(); 
 
-			$this->RegisterPropertyInteger("CortanaVoiceCommands",0);
+			
  		} 
 
 	
@@ -25,6 +25,9 @@
 				//Never delete this line! 
  				parent::ApplyChanges(); 
  			 
+				$vid = $this->RegisterVariableString("ips4Cortana", "CortanaVoiceCommands", "", "" );
+				$sid = $this->RegisterScript("ips4Cortana", "ips4CortanaSprachbefehle", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinCortana/module.php\");\n\n$ipsCortana = new ips4WinCortana(".$this->vid."));\n//Your code goes here...\n\nipsCortana->AddVoiceCommand(\"schalte das Licht im Wohnzimmer an\");\nipsCortana->AddVoiceCommand(\"schalte das Licht im Wohnzimmer aus\");\nipsCortana->writeCommandList();"); 
+
  				$sid = $this->RegisterScript("ips4CortanaHook", "ips4CortanaHook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinCortana/module.php\");\n(new ips4WinCortana(".$this->InstanceID."))->ProcessHookData();"); 
 
   				$this->RegisterHook("/hook/ips4WinCortana", $sid); 
@@ -68,6 +71,28 @@
  			 
  			 
 
+ 		}
+		public function AddVoiceCommand($command)
+		{
+		}
+		public function writeCommandList()
+		{
+		}
+		
+		private function CreateVariableByIdent($id, $ident, $name, $type, $profile = "") 
+ 		 { 
+ 			 $vid = @IPS_GetObjectIDByIdent($ident, $id); 
+ 			 if($vid === false) 
+ 			 { 
+ 				 $vid = IPS_CreateVariable($type); 
+ 				 IPS_SetParent($vid, $id); 
+ 				 IPS_SetName($vid, $name); 
+ 				 IPS_SetIdent($vid, $ident); 
+ 				 if($profile != "") 
+ 					IPS_SetVariableCustomProfile($vid, $profile); 
+ 			 } 
+ 			 return $vid; 
  		} 
+		 
 	}
 ?>

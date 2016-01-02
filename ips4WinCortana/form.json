@@ -1,8 +1,0 @@
-{
-  "actions": 
-  [
-    {
-      "name": "CortanaVoiceCommands", "type": "SelectVariable", "caption": "Cortana Sprachbefehle"
-    }
-  ]
-}

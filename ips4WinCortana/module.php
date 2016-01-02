@@ -14,9 +14,7 @@
 		public function Create() 
 		{ 
  			//Never delete this line! 
- 			parent::Create(); 
-
-			
+ 			parent::Create(); 			
  		} 
 
 	
@@ -25,8 +23,8 @@
 				//Never delete this line! 
  				parent::ApplyChanges(); 
  			 
-				$vid = $this->RegisterVariableString("ips4CortanaVoiceCommands", "CortanaVoiceCommands", "", "" );
-				//$sid = $this->RegisterScript("ips4CortanaVoiceCommandsScript", "ips4CortanaSprachbefehle", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinCortana/module.php\");\n\n\$ipsCortana = new ips4WinCortana(".$vid.");\n\n//Your code goes here...\n\n\$ipsCortana->AddVoiceCommand(\"schalte das Licht im Wohnzimmer an\");\n\$ipsCortana->AddVoiceCommand(\"schalte das Licht im Wohnzimmer aus\");\n\$ipsCortana->writeCommandList();"); 
+				$vid = $this->RegisterVariableString("ips4CortanaVoiceCommands", "CortanaVoiceCommands", "", 0);
+				$this->RegisterScript("ips4CortanaVoiceCommandsScript", "ips4CortanaSprachbefehle", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinCortana/module.php\");\n\n\$ipsCortana = new ips4WinCortana(".$vid.");\n\n//Your code goes here...\n\n\$ipsCortana->AddVoiceCommand(\"schalte das Licht im Wohnzimmer an\");\n\$ipsCortana->AddVoiceCommand(\"schalte das Licht im Wohnzimmer aus\");\n\$ipsCortana->writeCommandList();"); 
 
  				$sid = $this->RegisterScript("ips4CortanaHook", "ips4CortanaHook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinCortana/module.php\");\n(new ips4WinCortana(".$this->InstanceID."))->ProcessHookData();"); 
 
@@ -67,11 +65,10 @@
  			if(!isset($_POST['device']) || !isset($_POST['name']) || !isset($_POST['accessToken']) || !isset($_POST['SecChannel'])) { 
  				IPS_LogMessage("ips4WinCortana", "Malformed data: ".print_r($_POST, true)); 
  				return; 
- 			} 
- 			 
- 			 
+ 			}  
 
  		}
+
 		public function AddVoiceCommand($command)
 		{
 		}

@@ -15,6 +15,8 @@
 		{ 
  			//Never delete this line! 
  			parent::Create(); 
+
+			$this->RegisterPropertyInteger("CortanaVoiceCommands",0);
  		} 
 
 	

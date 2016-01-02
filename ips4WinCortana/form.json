@@ -1,7 +1,8 @@
 {
-  "elements": [
+  "actions": 
+  [
     {
-      "type": "CortanaVoiceCommands", "name": "PropertyVariableID", "caption": "Cortana Sprachbefehle"
+      "name": "CortanaVoiceCommands", "type": "SelectVariable", "caption": "Cortana Sprachbefehle"
     }
   ]
 }

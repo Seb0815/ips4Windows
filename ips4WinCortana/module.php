@@ -71,10 +71,25 @@
  			} 
  			 
  			 
- 			if(!isset($_POST['device']) || !isset($_POST['name']) || !isset($_POST['accessToken']) || !isset($_POST['SecChannel'])) { 
+ 			if(!isset($_POST['command'])) { 
  				IPS_LogMessage("ips4WinCortana", "Malformed data: ".print_r($_POST, true)); 
  				return; 
- 			}  
+ 			}
+			
+			if ($_POST['command']) == "GetConfig")
+			{
+				$vid = @IPS_GetObjectIDByIdent("ips4CortanaVoiceCommands", $this->InstanceID); 
+ 				if($vid === false) 
+ 				{
+					echo "not found"; 
+				}
+				else
+				{
+					$ret = GetValueString ($vid);
+					echo $ret;
+				}
+			}
+			  
 
  		}
 				

@@ -76,7 +76,7 @@
  				return; 
  			}
 			
-			if ($_POST['command']) == "GetConfig")
+			if ($_POST['command'] == "GetConfig")
 			{
 				$vid = @IPS_GetObjectIDByIdent("ips4CortanaVoiceCommands", $this->InstanceID); 
  				if($vid === false) 

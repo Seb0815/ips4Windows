@@ -209,7 +209,7 @@
 			}
 			else
 			{
-			   $arr[0] = $Phrase ;
+			   $arr[0] = $Phrase;
 			}
 
 

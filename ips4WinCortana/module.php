@@ -123,7 +123,7 @@
 			 
 			$utf8 = utf8_encode($Content);
 	  		$base64 = base64_encode($utf8);
-			retrun $base64;
+			return $base64;
 		}
 		public function SendFeedbackFailure($FeedbackMessage)
 		{
@@ -132,7 +132,7 @@
 			 
 			$utf8 = utf8_encode($Content);
 	  		$base64 = base64_encode($utf8);
-			retrun $base64;
+			return $base64;
 		}
 		public function SendFeedbackVerify($FeedbackMessage)
 		{	
@@ -141,7 +141,7 @@
 			 
 			$utf8 = utf8_encode($Content);
 	  		$base64 = base64_encode($utf8);
-			retrun $base64;
+			return $base64;
 		}
 		public function SendFeedbackVerifyDetailed($FeedbackMessage, $ListValues)
 		{	
@@ -155,7 +155,7 @@
 			 
 			$utf8 = utf8_encode($Content);
 	  		$base64 = base64_encode($utf8);
-			retrun $base64;
+			return $base64;
 		}
 		
 		

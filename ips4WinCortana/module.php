@@ -150,7 +150,7 @@
 		public function SendFeedbackVerifyDetailed($FeedbackMessage, $ListValues)
 		{	
 			//Rückfrage mit Auswahl Liste		
-			$Content = "VERIFYDETAILED#*#".$FeedbackMessage#*#;
+			$Content = "VERIFYDETAILED#*#".$FeedbackMessage."#*#";
 			$i=0;
 			foreach($ListValues as $value)
 			{

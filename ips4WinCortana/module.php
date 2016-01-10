@@ -161,7 +161,7 @@
 				$i++;
 			}
 			 
-			$utf8 = utf8_encode($Content);
+			$utf8 = utf8_decode($Content);
 	  		$base64 = base64_encode($utf8);
 			return $base64;
 		}

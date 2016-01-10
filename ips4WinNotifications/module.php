@@ -13,6 +13,9 @@
 
     	function __construct($ObjID)
     	{
+		    // Diese Zeile nicht löschen
+            parent::__construct($InstanceID);
+ 
 			$deviceToken = GetValueString($ObjID);
 			$data = explode("###",$deviceToken);
 			if (count($data) > 1)

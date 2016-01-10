@@ -150,11 +150,15 @@
 		public function SendFeedbackVerifyDetailed($FeedbackMessage, $ListValues)
 		{	
 			//Rückfrage mit Auswahl Liste		
-			$Content = "VERIFYDETAILED#*#".$FeedbackMessage;
-			$Content = $Content."#*#ListValues";
+			$Content = "VERIFYDETAILED#*#".$FeedbackMessage#*#;
+			$i=0;
 			foreach($ListValues as $value)
 			{
-				$Content = $Content."#+#".$value;
+				if ($i==0)
+					$Content = $Content.$value;
+				else
+					$Content = $Content."#+#".$value;
+				$i++;
 			}
 			 
 			$utf8 = utf8_encode($Content);

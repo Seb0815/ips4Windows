@@ -125,7 +125,7 @@
 			//Erfolgmeldung		
 			$Content = "OK#*#".$FeedbackMessage;
 			 
-			$utf8 = utf8_encode($Content);
+			$utf8 = utf8_decode($Content);
 	  		$base64 = base64_encode($utf8);
 			return $base64;
 		}
@@ -134,7 +134,7 @@
 			//Fehlerbenachrichtigung
 			$Content = "ERROR#*#".$FeedbackMessage;
 			 
-			$utf8 = utf8_encode($Content);
+			$utf8 = utf8_decode($Content);
 	  		$base64 = base64_encode($utf8);
 			return $base64;
 		}
@@ -143,7 +143,7 @@
 			//Rückfrage Ja/Nein		
 			$Content = "VERIFY#*#".$FeedbackMessage;
 			 
-			$utf8 = utf8_encode($Content);
+			$utf8 = utf8_decode($Content);
 	  		$base64 = base64_encode($utf8);
 			return $base64;
 		}
@@ -408,7 +408,7 @@
 			{
 				$Content = $CommandListString."#*#".$FeedbackListString."#*#".$ExampleListString."#*#".$PhraseListString;
 
-			    $utf8 = utf8_encode($Content);
+			    $utf8 = utf8_decode($Content);
 	  			$base64 = base64_encode($utf8);
 	  			SetValueString($this->InstanceID,$base64);
 	  			echo "Data successful written\n";

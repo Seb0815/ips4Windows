@@ -90,7 +90,7 @@
 					echo $ret;
 				}
 			}
-			elseif ($_POST['ips4Command'] == "SetData")
+			elseif ($_POST['ips4Command'] == "Data")
 			{
 				$this->result = $_Post;	
 			}
@@ -137,7 +137,7 @@
 		public function SendFeedbackVerify($FeedbackMessage)
 		{	
 			//Rückfrage Ja/Nein		
-			$Content = "Verify#*#".$FeedbackMessage;
+			$Content = "VERIFY#*#".$FeedbackMessage;
 			 
 			$utf8 = utf8_encode($Content);
 	  		$base64 = base64_encode($utf8);
@@ -146,7 +146,7 @@
 		public function SendFeedbackVerifyDetailed($FeedbackMessage, $ListValues)
 		{	
 			//Rückfrage mit Auswahl Liste		
-			$Content = "VerifyDetailed#*#".$FeedbackMessage;
+			$Content = "VERIFYDETAILED#*#".$FeedbackMessage;
 			$Content = $Content."#°#ListValues";
 			foreach($ListValues as $value)
 			{

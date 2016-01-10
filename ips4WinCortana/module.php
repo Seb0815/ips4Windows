@@ -96,7 +96,7 @@
 			}
 			elseif ($_POST['ips4Command'] == "Data")
 			{
-				$this->result = $_Post;	
+				$this->result = \$_Post;	
 			}
  		}
 				

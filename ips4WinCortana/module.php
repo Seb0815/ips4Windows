@@ -36,7 +36,7 @@
 				$this->RegisterScript("ips4WinCortanaVoiceCommandsScript", "ipsWinCortanaSprachbefehle","<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinCortana/module.php\");\n\n\$ips4WinCortana = new ips4WinCortana(".$vid.");\n\n//Your code goes here...\n\n\$ips4WinCortana->EnableDebug(true);\n\n //you can add up to 100 sections (called Commands, each need a unique name like Block1\/Block2 or what ever you like)\n //each section can have up to 10 speach commands and include multiple PhraseLists (like {room}) entries\n\$ips4WinCortana->AddVoiceCommand(\"Block1\",\"schalte das Licht im {room} {action}\");\n\$ips4WinCortana->AddVoiceCommand(\"Block2\",\"{action} das Rollo im {room}\");\n\n //each section needs a Feedback and Example entry. Feedback is used when command was processed from Cortana\n //Example will shown, when user asks Cortana \"What can I say?/Was kann ich sagen?\"\n\$ips4WinCortana->AddCommandExample(\"Block1\",\"schalte das Licht im Wohnzimmer an\");\n\$ips4WinCortana->AddCommandExample(\"Block2\",\"schliesse das Rollo im Büro\");\n\n\$ips4WinCortana->AddCommandFeedback(\"Block1\",\"ok, ich verarbeite deinen Befehl\");\n\$ips4WinCortana->AddCommandFeedback(\"Block2\",\"ich arbeite dran\");\n\n //you can add multiple PhraseLists with an total of max. 2000 entries\n\$ips4WinCortana->AddActionPhraseCommand(\"action\",\"öffne\");\n\$ips4WinCortana->AddActionPhraseCommand(\"action\",\"schliesse\");\n\$ips4WinCortana->AddActionPhraseCommand(\"action\",\"an\");\n\$ips4WinCortana->AddActionPhraseCommand(\"action\",\"aus\");\n\$ips4WinCortana->AddActionPhraseCommand(\"room\",\"Wohnzimmer\");\n\$ips4WinCortana->AddActionPhraseCommand(\"room\",\"Büro\");\n\n //ProcessData will convert all the entries to something readable for ips4Windows App\n\$ips4WinCortana->ProcessData();"); 
 
 
- 				$sid = $this->RegisterScript("ips4WinCortanaHook", "ips4WinCortanaHook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinCortana/module.php\");\n\$ips4WinCortana = new ipsCortana(".$this->InstanceID.");\n\$ips4WinCortana->ProcessHookData();\n\n//Your code goes here...\n\n\$resultArray = \$ips4WinCortana->GetCortanaResult();\n//\$resultArray has all the data from Cortana\n//textSpoken - full message captured by Cortana\n//CommandName - Command of textSpoken line, user defined in ips4CortanaSprachbefehle script (aka section)\n//action - used entry from PhraseList defined in ips4CortanaSprachbefehle script\n//room - used entry from PhraseList defined in ips4CortanaSprachbefehle script\nprint_r(\$resultArray);\n//do something useful\n//...\n//Cortana waits for feedback, otherwise the request will timeout in seconds and shows an error\n\$result = \$ips4WinCortana->SendFeedbackSuccess(\"Erfolgreich ausgeführt\");\n//last line of the script must be an echo result\necho \$result;"); 
+ 				$sid = $this->RegisterScript("ips4WinCortanaHook", "ips4WinCortanaHook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinCortana/module.php\");\n\$ips4WinCortana = new ips4WinCortana(".$this->InstanceID.");\n\$ips4WinCortana->ProcessHookData();\n\n//Your code goes here...\n\n\$resultArray = \$ips4WinCortana->GetCortanaResult();\n//\$resultArray has all the data from Cortana\n//textSpoken - full message captured by Cortana\n//CommandName - Command of textSpoken line, user defined in ips4CortanaSprachbefehle script (aka section)\n//action - used entry from PhraseList defined in ips4CortanaSprachbefehle script\n//room - used entry from PhraseList defined in ips4CortanaSprachbefehle script\nprint_r(\$resultArray);\n//do something useful\n//...\n//Cortana waits for feedback, otherwise the request will timeout in seconds and shows an error\n\$result = \$ips4WinCortana->SendFeedbackSuccess(\"Erfolgreich ausgeführt\");\n//last line of the script must be an echo result\necho \$result;"); 
 
   				$this->RegisterHook("/hook/ips4WinCortana", $sid); 
 		} 
@@ -79,10 +79,10 @@
 			
 			if ($_POST['ips4Command'] == "GetConfig")
 			{
-				$vid = @IPS_GetObjectIDByIdent("ips4CortanaVoiceCommands", $this->InstanceID); 
+				$vid = @IPS_GetObjectIDByIdent("ips4WinCortanaVoiceCommands", $this->InstanceID); 
  				if($vid === false) 
  				{
-					echo "not found"; 
+					echo "ERROR: Variable ips4WinCortanaVoiceCommands not found in IPS, please check installation of instance ips4WinCortana!"; 
 				}
 				else
 				{
@@ -113,7 +113,7 @@
 
 		public function GetCortanaResult()
 		{
-			return $this->result;
+			return $this->Result;
 		}
 
 		public function SendFeedbackSuccess($FeedbackMessage)

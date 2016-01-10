@@ -82,11 +82,13 @@
 				$vid = @IPS_GetObjectIDByIdent("ips4WinCortanaVoiceCommands", $this->InstanceID); 
  				if($vid === false) 
  				{
-					echo "ERROR: Variable ips4WinCortanaVoiceCommands not found in IPS, please check installation of instance ips4WinCortana!"; 
+					echo "ERROR: Variable ips4WinCortanaVoiceCommands not found in IPS, please check installation of instance \"ips4WinCortana\"!"; 
 				}
 				else
 				{
-					$ret = GetValueString ($vid);
+					$ret = GetValueString ($vid)
+					if ($ret == "")
+						$ret = "ERROR: ips4WinCortanaVoiceCommands has no entries, please check script \"ipsWinCortanaSprachbefehle\" and don't forget to start the script!";
 					echo $ret;
 				}
 			}

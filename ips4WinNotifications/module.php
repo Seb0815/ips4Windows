@@ -14,7 +14,7 @@
     	function __construct($ObjID)
     	{
 		    // Diese Zeile nicht löschen
-            parent::__construct($InstanceID);
+            parent::__construct($ObjID);
  
 			$deviceToken = GetValueString($ObjID);
 			$data = explode("###",$deviceToken);

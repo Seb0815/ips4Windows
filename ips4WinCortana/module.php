@@ -86,9 +86,11 @@
 				}
 				else
 				{
-					$ret = GetValueString ($vid)
+					$ret = GetValueString ($vid);
 					if ($ret == "")
-						$ret = "ERROR: ips4WinCortanaVoiceCommands has no entries, please check script \"ipsWinCortanaSprachbefehle\" and don't forget to start the script!";
+					{
+						$ret = "ERROR: ips4WinCortanaVoiceCommands has no entries, please check script \"ipsWinCortanaSprachbefehle\" and don\'t forget to start the script!";
+					}
 					echo $ret;
 				}
 			}

@@ -408,9 +408,9 @@
 			{
 				$Content = $CommandListString."#*#".$FeedbackListString."#*#".$ExampleListString."#*#".$PhraseListString;
 
-			    $utf8 = utf8_decode($Content);
+			    //$utf8 = utf8_decode($Content);
 				//$utf8 = utf8_decode($utf8);
-	  			$base64 = base64_encode($utf8);
+	  			$base64 = base64_encode($content);
 				SetValueString($this->InstanceID,$base64);
 	  			echo "Data successful written\n";
 

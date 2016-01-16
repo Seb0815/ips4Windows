@@ -424,7 +424,7 @@
 			
 			$base64 = base64_encode($text);
 
-			return base64;	
+			return $base64;	
 		} 
 
 		 

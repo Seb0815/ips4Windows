@@ -125,27 +125,24 @@
 			//Erfolgmeldung		
 			$Content = "OK#*#".$FeedbackMessage;
 			 
-			$utf8 = utf8_decode($Content);
-	  		$base64 = base64_encode($utf8);
-			return $base64;
+			$Content = convertForOutput($Content);
+			return $Content;
 		}
 		public function SendFeedbackFailure($FeedbackMessage)
 		{
 			//Fehlerbenachrichtigung
 			$Content = "ERROR#*#".$FeedbackMessage;
 			 
-			$utf8 = utf8_decode($Content);
-	  		$base64 = base64_encode($utf8);
-			return $base64;
+			$Content = convertForOutput($Content);
+			return $Content;
 		}
 		public function SendFeedbackVerify($FeedbackMessage)
 		{	
 			//Rückfrage Ja/Nein		
 			$Content = "VERIFY#*#".$FeedbackMessage;
 			 
-			$utf8 = utf8_decode($Content);
-	  		$base64 = base64_encode($utf8);
-			return $base64;
+			$Content = convertForOutput($Content);
+			return $Content;
 		}
 		public function SendFeedbackVerifyDetailed($FeedbackMessage, $ListValues)
 		{	
@@ -161,9 +158,8 @@
 				$i++;
 			}
 			 
-			$utf8 = utf8_decode($Content);
-	  		$base64 = base64_encode($utf8);
-			return $base64;
+			$Content = convertForOutput($Content);
+			return $Content;
 		}
 		
 		
@@ -407,11 +403,9 @@
 			else
 			{
 				$Content = $CommandListString."#*#".$FeedbackListString."#*#".$ExampleListString."#*#".$PhraseListString;
-
-			    //$utf8 = utf8_decode($Content);
-				//$utf8 = utf8_decode($utf8);
-	  			$base64 = base64_encode($content);
-				SetValueString($this->InstanceID,$base64);
+				$Content = convertForOutput($Content);
+			
+				SetValueString($this->InstanceID,$Content);
 	  			echo "Data successful written\n";
 
 			}
@@ -421,6 +415,18 @@
     	{
     	   $this->Debug = $Debug;
 		}
+		
+		private function convertForOutput($text) 
+		{ 
+			$searchFor = array("ä","Ä","ö","Ö","ü","Ü","ß");
+			$replaceWith = array("#ae#","#AE#","#oe#","#OE#","#ue#","#UE#","#ss#");
+			$text = str_replace ($$searchFor, $$replaceWith, $text); 
+			
+			$base64 = base64_encode(text);
+
+			return base64;	
+		} 
+
 		 
 	}
 ?>

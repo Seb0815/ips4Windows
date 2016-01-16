@@ -125,7 +125,7 @@
 			//Erfolgmeldung		
 			$Content = "OK#*#".$FeedbackMessage;
 			 
-			$Content = convertForOutput($Content);
+			$Content = $this->convertForOutput($Content);
 			return $Content;
 		}
 		public function SendFeedbackFailure($FeedbackMessage)
@@ -133,7 +133,7 @@
 			//Fehlerbenachrichtigung
 			$Content = "ERROR#*#".$FeedbackMessage;
 			 
-			$Content = convertForOutput($Content);
+			$Content = $this->convertForOutput($Content);
 			return $Content;
 		}
 		public function SendFeedbackVerify($FeedbackMessage)
@@ -141,7 +141,7 @@
 			//Rückfrage Ja/Nein		
 			$Content = "VERIFY#*#".$FeedbackMessage;
 			 
-			$Content = convertForOutput($Content);
+			$Content = $this->convertForOutput($Content);
 			return $Content;
 		}
 		public function SendFeedbackVerifyDetailed($FeedbackMessage, $ListValues)
@@ -158,7 +158,7 @@
 				$i++;
 			}
 			 
-			$Content = convertForOutput($Content);
+			$Content = $this->convertForOutput($Content);
 			return $Content;
 		}
 		
@@ -403,7 +403,7 @@
 			else
 			{
 				$Content = $CommandListString."#*#".$FeedbackListString."#*#".$ExampleListString."#*#".$PhraseListString;
-				$Content = convertForOutput($Content);
+				$Content = $this->convertForOutput($Content);
 			
 				SetValueString($this->InstanceID,$Content);
 	  			echo "Data successful written\n";

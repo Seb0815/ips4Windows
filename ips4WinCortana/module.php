@@ -420,9 +420,9 @@
 		{ 
 			$searchFor = array("ä","Ä","ö","Ö","ü","Ü","ß");
 			$replaceWith = array("#ae#","#AE#","#oe#","#OE#","#ue#","#UE#","#ss#");
-			$text = str_replace ($$searchFor, $$replaceWith, $text); 
+			$text = str_replace ($searchFor, $replaceWith, $text); 
 			
-			$base64 = base64_encode(text);
+			$base64 = base64_encode($text);
 
 			return base64;	
 		} 

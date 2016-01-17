@@ -405,7 +405,7 @@
 				$Content = $CommandListString."#*#".$FeedbackListString."#*#".$ExampleListString."#*#".$PhraseListString;
 				if ($this->Debug)
 				{
-					echo "Output:\n".$Content."\n";
+					echo "Output(plain):\n".$Content."\n";
  				}
 				$Content = $this->convertForOutput($Content);
 			
@@ -423,10 +423,17 @@
 		private function convertForOutput($text) 
 		{ 
 			$utf8 = utf8_decode($text);
+			if ($this->Debug)
+			{
+				echo "Output(utf8 decoded):\n".$utf8."\n";
+ 			}
 			$searchFor = array("ä","Ä","ö","Ö","ü","Ü","ß");
 			$replaceWith = array("#ae#","#AE#","#oe#","#OE#","#ue#","#UE#","#ss#");
 			$text = str_replace ($searchFor, $replaceWith, $utf8); 
-			
+			if ($this->Debug)
+			{
+				echo "Output(mask):\n".$text."\n";
+ 			}
 			$base64 = base64_encode($text);
 
 			return $base64;	

@@ -1,5 +1,5 @@
 <?
-	class ips4WinNotifications
+	class ips4WinNotifications extends IPSModule 
 	{
 
    		private $header1 = 'Content-Type: text/xml';

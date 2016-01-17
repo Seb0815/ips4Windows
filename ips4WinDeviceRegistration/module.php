@@ -23,7 +23,7 @@
 				//Never delete this line! 
  				parent::ApplyChanges(); 
  			 
- 				$sid = $this->RegisterScript("ips4DeviceHook", "ips4DeviceHook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinDeviceRegistration/module.php\");\n(new ips4WinDeviceRegistration(".$this->InstanceID."))->ProcessHookData();"); 
+ 				$sid = $this->RegisterScript("ips4WinDeviceHook", "ips4WinDeviceHook", "<? //Do not delete or modify.\ninclude(IPS_GetKernelDirEx().\"scripts/__ipsmodule.inc.php\");\ninclude(\"../modules/ips4Windows/ips4WinDeviceRegistration/module.php\");\n(new ips4WinDeviceRegistration(".$this->InstanceID."))->ProcessHookData();"); 
 
   				$this->RegisterHook("/hook/ips4WinDeviceReg", $sid); 
 		} 

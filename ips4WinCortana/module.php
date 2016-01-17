@@ -311,7 +311,7 @@
  			}
 			foreach ($this->CommandList as $key => $value)
 			{
-				$temp=implode("#°#",$value);
+				$temp=implode("#=#",$value);
 			   if (strlen($CommandListString) > 0)
 					$CommandListString = $CommandListString."#+#".$key."#-#".$temp;
 				else
@@ -382,7 +382,7 @@
 
 			foreach ($this->PhraseList as $key => $value)
 			{
-				$temp=implode("#°#",$value);
+				$temp=implode("#=#",$value);
 			   if (strlen($PhraseListString) > 0)
 					$PhraseListString = $PhraseListString."#+#".$key."#-#".$temp;
 				else

@@ -313,9 +313,9 @@
 			{
 				$temp=implode("#°#",$value);
 			   if (strlen($CommandListString) > 0)
-					$CommandListString = $CommandListString."#+#".$key."#~#".$temp;
+					$CommandListString = $CommandListString."#+#".$key."#-#".$temp;
 				else
-					$CommandListString = $key."#~#".$temp;
+					$CommandListString = $key."#-#".$temp;
 					
 				if(!isset($this->FeedbackList[$key]))
 				{
@@ -344,9 +344,9 @@
 			foreach ($this->FeedbackList as $key => $value)
 			{
 			   if (strlen($FeedbackListString) > 0)
-					$FeedbackListString = $FeedbackListString."#+#".$key."#~#".$value;
+					$FeedbackListString = $FeedbackListString."#+#".$key."#-#".$value;
 				else
-					$FeedbackListString = $key."#~#".$value;
+					$FeedbackListString = $key."#-#".$value;
 			}
 
 			if ($this->Debug)
@@ -363,9 +363,9 @@
 			foreach ($this->ExampleList as $key => $value)
 			{
 			   if (strlen($ExampleListString) > 0)
-					$ExampleListString = $ExampleListString."#+#".$key."#~#".$value;
+					$ExampleListString = $ExampleListString."#+#".$key."#-#".$value;
 				else
-					$ExampleListString = $key."#~#".$value;
+					$ExampleListString = $key."#-#".$value;
 			}
 			
 			if ($this->Debug)
@@ -384,9 +384,9 @@
 			{
 				$temp=implode("#°#",$value);
 			   if (strlen($PhraseListString) > 0)
-					$PhraseListString = $PhraseListString."#+#".$key."#~#".$temp;
+					$PhraseListString = $PhraseListString."#+#".$key."#-#".$temp;
 				else
-					$PhraseListString = $key."#~#".$temp;
+					$PhraseListString = $key."#-#".$temp;
 			
 			}
 
@@ -422,10 +422,10 @@
 		
 		private function convertForOutput($text) 
 		{ 
-			$utf8 = utf8_encode($text);
+			$utf8 = utf8_decode($text);
 			if ($this->Debug)
 			{
-				echo "Output(utf8 encoded):\n".$utf8."\n";
+				echo "Output(utf8 decoded):\n".$utf8."\n";
  			}
 			$searchFor = array("ä","Ä","ö","Ö","ü","Ü","ß");
 			$replaceWith = array("#ae#","#AE#","#oe#","#OE#","#ue#","#UE#","#ss#");

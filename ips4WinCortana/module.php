@@ -418,9 +418,10 @@
 		
 		private function convertForOutput($text) 
 		{ 
+			$utf8 = utf8_decode($text);
 			$searchFor = array("ä","Ä","ö","Ö","ü","Ü","ß");
 			$replaceWith = array("#ae#","#AE#","#oe#","#OE#","#ue#","#UE#","#ss#");
-			$text = str_replace ($searchFor, $replaceWith, $text); 
+			$text = str_replace ($searchFor, $replaceWith, $utf8); 
 			
 			$base64 = base64_encode($text);
 

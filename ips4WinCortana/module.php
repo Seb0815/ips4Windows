@@ -403,6 +403,10 @@
 			else
 			{
 				$Content = $CommandListString."#*#".$FeedbackListString."#*#".$ExampleListString."#*#".$PhraseListString;
+				if ($this->Debug)
+				{
+					echo "Output:\n".$Content."\n";
+ 				}
 				$Content = $this->convertForOutput($Content);
 			
 				SetValueString($this->InstanceID,$Content);

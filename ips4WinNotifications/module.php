@@ -184,7 +184,7 @@
 				{
 					$authToken = $deviceArray[$j][2];
 					$headers = "";
-					if ($MsgType == "")
+					if ($MsgType == "Bagde")
 						$headers = array($this->header1,$this->header2.'wns/badge',$this->header3.$authToken);
 					else if ($MsgType == "Toast")
 						$headers = array($this->header1,$this->header2.'wns/toast',$this->header3.$authToken);				
@@ -195,7 +195,7 @@
 	 				{
 						echo "headers:\n";
 	 					print_r($headers);
-	 					echo "body:S\n".$body."\n";
+	 					echo "body:\n".$body."\n";
 					}
 
 					// use Client URL Library
@@ -223,7 +223,7 @@
 					if($response === FALSE)
 						return "Error in ips4WinNotifications->sendNotifications: ".curl_error($ch);
 					else
-				   return true;
+				   return $response;
 				}
 
 

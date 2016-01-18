@@ -223,7 +223,15 @@
 					if($response === FALSE)
 						return "Error in ips4WinNotifications->sendNotifications: ".curl_error($ch);
 					else
-				   return $response;
+
+					if($this->Debug)
+					{
+						echo "result:\n";
+						echo $response;
+					}
+					
+
+				   return true;
 				}
 
 

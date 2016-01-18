@@ -169,7 +169,7 @@
 					echo "process ".$MsgType." Message for ".$deviceArray[$j][0]." (Device URL: )".$deviceArray[$j][1]."\n";
 				}
 				
-				if ($deviceArray[$j][1] == "" | $deviceArray[$j][2] == "" | $deviceArray[$j][3] < time())
+				if ($deviceArray[$j][1] == "" | $deviceArray[$j][2] == "" | $deviceArray[$j][3] > time())
 				{
 					return "Error in ips4WinNotifications->sendNotifications: skip device ".$deviceArray[$j][0]." device URL/AuthToken is empty or SecureChannel is Expired!\n";
 				}

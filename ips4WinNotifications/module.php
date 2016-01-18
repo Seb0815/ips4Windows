@@ -175,7 +175,7 @@
 	 				{
 						echo "Device URL: ".$deviceArray[$j][1]."\n";
 						echo "AccessToken: ".$deviceArray[$j][2]."\n";
-						echo "SecureChannel Exp: "..$deviceArray[$j][3]." vs. current time: ".time()."\n";
+						echo "SecureChannel Exp: ".$deviceArray[$j][3]." vs. current time: ".time()."\n";
 					}
 
 					return "Error in ips4WinNotifications->sendNotifications: skip device ".$deviceArray[$j][0]." device URL/AuthToken is empty or SecureChannel is Expired!\n";

@@ -9,10 +9,10 @@
     	private $Debug = false;
     	private $WNSMsgToken = "abc";
 
-    	function __construct($ObjID)
+    	function __construct()
     	{
 		    // Diese Zeile nicht löschen
-            parent::__construct($ObjID);
+            parent::__construct();
  			
     	}
 
@@ -45,12 +45,7 @@
 	 	{
 	 	   
 	 	   $body = '<?xml version="1.0" encoding="utf-8"?><badge version="1" value="'.$Value.'"/>';
-	 	   if ($this->Debug)
-	 	   {
-	 	      echo "headers\n";
-	 	      print_r($headers);
-	 	      echo "body\n".$body."\n";
-			}
+	 	  
 	 	   $response = $this->sendNotification($device,"Bagde",$body);
 	 	   return $response;
 	 	}
@@ -59,13 +54,7 @@
 	 	{
 			
 	 	    $body = "<?xml version=\"1.0\" encoding=\"utf-8\"?><toast><visual><binding template=\"ToastGeneric\"><text>".$text1."</text><text>".$text2."</text></binding></visual></toast>";
-			
-	    	if ($this->Debug)
-	 	    {
-	 			echo "headers\n";
-	 			print_r($headers);
-	 			echo "body\n".$body."\n";
-			}
+			    	
 	 	    $response = $this->sendNotification($device,"Toast",$body);
 	 	    return $response;
 	 	}
@@ -83,13 +72,7 @@
 			$bodyend = "</visual></tile>";
 			
 			$body = $bodystart.$bodysmall.$bodymedium.$bodyend;
-
-			if ($this->Debug)
-	 	   {
-	 	      echo "headers\n";
-	 	      print_r($headers);
-	 	      echo "body\n".$body."\n";
-			}
+						
 	 	   $response = $this->sendNotification($device, "Tile",$body);
 	 	   return $response;
 	 	}
@@ -200,6 +183,13 @@
 						$headers = array($this->header1,$this->header2.'wns/toast',$this->header3.$authToken);				
 					else if ($MsgType == "Tile")
 						$headers = array($this->header1,$this->header2.'wns/tile',$this->header4.$this->WNSMsgToken,$this->header3.$authToken );
+
+					if ($this->Debug)
+	 				{
+						echo "headers:\n";
+	 					print_r($headers);
+	 					echo "body:S\n".$body."\n";
+					}
 
 					// use Client URL Library
 					$ch = curl_init();

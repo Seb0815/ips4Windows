@@ -9,10 +9,10 @@
     	private $Debug = false;
     	private $WNSMsgToken = "abc";
 
-    	function __construct()
+    	function __construct($InstanceID)
     	{
 		    // Diese Zeile nicht löschen
-            parent::__construct();
+            parent::__construct($InstanceID);
  			
     	}
 

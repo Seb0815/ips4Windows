@@ -80,7 +80,7 @@
 			$bodystart = "<tile><visual>";
 			$bodysmall = "<binding template=\"TileSmall\" hint-textStacking=\"center\"><text hint-align=\"center\" hint-overlay=\"30\"><image src=\"ms-appx:///Assets/Icons/Logo44x44.png\" placement=\"peak\"/><text hint-style=\"body\" hint-align=\"center\">".$text1."</text><text hint-style=\"base\" hint-align=\"center\">".$text2."</text></binding>";
 			$bodymedium = "<binding template=\"TileMedium\" hint-textStacking=\"center\"><image src=\"ms-appx:///Assets/Icons/SmallLogo.png\" placement=\"peek\" hint-crop=\"circle\"/><text hint-style=\"base\" hint-align=\"center\">".$text1."</text><text hint-style=\"captionSubtle\" hint-align=\"center\">".$text2."</text></binding>";
-			$bodyend = "</visual></tile>""
+			$bodyend = "</visual></tile>";
 			
 			$body = $bodystart.$bodysmall.$bodymedium.$bodyend;
 

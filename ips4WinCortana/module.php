@@ -419,7 +419,7 @@
 		
 		private function convertForOutput($text) 
 		{ 
-			$utf8 = utf8_decode($text);
+			$utf8 = utf8_encode($text);
 			
 			$searchFor = array("ä","Ä","ö","Ö","ü","Ü","ß");
 			$replaceWith = array("#ae#","#AE#","#oe#","#OE#","#ue#","#UE#","#ss#");

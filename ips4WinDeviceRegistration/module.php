@@ -63,7 +63,7 @@
  				return; 
  			} 
  			 
- 			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, "ips4WinDevice-".utf8_decode($_POST['deviceName']), "Device-".utf8_decode($_POST['deviceName'])); 
+ 			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, "ips4WinDevice-".utf8_decode($_POST['deviceName']), utf8_decode($_POST['deviceName'])); 
  			SetValue($this->CreateVariableByIdent($deviceID, "SecChannel", "SecChannel", 3), utf8_decode($_POST['SecChannel'])); 
  			SetValue($this->CreateVariableByIdent($deviceID, "deviceName", "deviceName", 3), utf8_decode($_POST['deviceName'])); 
 			SetValue($this->CreateVariableByIdent($deviceID, "deviceType", "deviceType", 3), utf8_decode($_POST['deviceType'])); 			

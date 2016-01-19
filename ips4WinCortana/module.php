@@ -9,6 +9,7 @@
     	private $PhraseList = null;
     	private $Debug = false;
 		private $Result = null;
+		private $UTF8 = false;
 
    		 public function __construct($InstanceID) 
 		 {
@@ -416,10 +417,18 @@
     	{
     	   $this->Debug = $Debug;
 		}
+
+		public function UTF8Convert($UTF8)
+    	{
+    	   $this->UTF8 = $UTF8;
+		}
 		
 		private function convertForOutput($text) 
 		{ 
-			$utf8 = utf8_encode($text);
+			$utf8 = $text;
+
+			if ($this->UTF8)
+				$utf8 = utf8_encode($text);
 			
 			$searchFor = array("ä","Ä","ö","Ö","ü","Ü","ß");
 			$replaceWith = array("#ae#","#AE#","#oe#","#OE#","#ue#","#UE#","#ss#");

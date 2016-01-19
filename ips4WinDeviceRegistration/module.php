@@ -61,9 +61,12 @@
  			if(!isset($_POST['deviceName']) || !isset($_POST['deviceType']) || !isset($_POST['deviceFamily']) || !isset($_POST['SecChannel'])) { 
  				IPS_LogMessage("ips4WinDeviceRegistration", "Malformed data: ".print_r($_POST, true)); 
  				return; 
- 			} 
- 			 
- 			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, str_replace("-","",utf8_decode($_POST['deviceId'])), utf8_decode($_POST['deviceName'])."-".utf8_decode($_POST['deviceId'])); 
+ 			}
+			
+			$id =  str_replace("-","",utf8_decode($_POST['deviceName']).utf8_decode($_POST['deviceId']));
+ 			$id =  str_replace(" ","",$id);
+			 
+ 			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, $id, utf8_decode($_POST['deviceName'])."-".utf8_decode($_POST['deviceId'])); 
  			SetValue($this->CreateVariableByIdent($deviceID, "SecChannel", "SecChannel", 3), utf8_decode($_POST['SecChannel'])); 
 			SetValue($this->CreateVariableByIdent($deviceID, "AccessToken", "AccessToken", 3), utf8_decode($_POST['AccessToken'])); 
  			SetValue($this->CreateVariableByIdent($deviceID, "deviceName", "deviceName", 3), utf8_decode($_POST['deviceName'])); 

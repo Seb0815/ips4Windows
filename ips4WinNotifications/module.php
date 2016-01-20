@@ -66,7 +66,7 @@
 
 			$bodyend = "</visual></tile>";			
 			
-			$body = $bodystart.test.$bodyend;
+			$body = $bodystart.$text.$bodyend;
 			
 						
 	 	   $response = $this->sendNotification($device, "Tile",$body);

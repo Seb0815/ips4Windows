@@ -71,7 +71,9 @@
 			$bodymedium = "<binding template=\"TileMedium\" hint-textStacking=\"center\"><image src=\"ms-appx:///Assets/Icons/SmallLogo.png\" placement=\"peek\" hint-crop=\"circle\"/><text hint-style=\"base\" hint-align=\"center\">".$text1."</text><text hint-style=\"captionSubtle\" hint-align=\"center\">".$text2."</text></binding>";
 			$bodyend = "</visual></tile>";
 			
-			$body = $bodystart.$bodysmall.$bodymedium.$bodyend;
+			//$body = $bodystart.$bodysmall.$bodymedium.$bodyend;
+			$body = $bodystart.$bodysmall.$bodyend;
+			
 						
 	 	   $response = $this->sendNotification($device, "Tile",$body);
 	 	   return $response;

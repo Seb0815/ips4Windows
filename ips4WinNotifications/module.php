@@ -72,7 +72,7 @@
 			$bodyend = "</visual></tile>";
 			
 			//$body = $bodystart.$bodysmall.$bodymedium.$bodyend;
-			$body = $bodystart.$bodysmall.$bodyend;
+			$body = $bodystart.$bodymedium.$bodyend;
 			
 						
 	 	   $response = $this->sendNotification($device, "Tile",$body);

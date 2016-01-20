@@ -59,6 +59,20 @@
 	 	    return $response;
 	 	}
 
+		public function test($device, $text)
+		{
+			$text = utf8_encode($text);
+			$bodystart = "<tile><visual>";
+
+			$bodyend = "</visual></tile>";			
+			
+			$body = $bodystart.test.$bodyend;
+			
+						
+	 	   $response = $this->sendNotification($device, "Tile",$body);
+	 	   return $response;
+		}
+
 		public function sendTileNotification($device, $text1,$text2,$text3)
 	 	{
 			
@@ -71,8 +85,8 @@
 			$bodymedium = "<binding template=\"TileMedium\" hint-textStacking=\"center\"><image src=\"ms-appx:///Assets/Icons/SmallLogo.png\" placement=\"peek\" hint-crop=\"circle\"/><text hint-style=\"base\" hint-align=\"center\">".$text1."</text><text hint-style=\"captionSubtle\" hint-align=\"center\">".$text2."</text></binding>";
 			$bodyend = "</visual></tile>";
 			
-			$body = $bodystart.$bodysmall.$bodymedium.$bodyend;
-			//$body = $bodystart.$bodymedium.$bodyend;
+			//$body = $bodystart.$bodysmall.$bodymedium.$bodyend;
+			$body = $bodystart.$bodymedium.$bodyend;
 			
 						
 	 	   $response = $this->sendNotification($device, "Tile",$body);

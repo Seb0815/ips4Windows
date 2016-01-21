@@ -73,9 +73,15 @@
 	 	   return $response;
 		}
 
-		public function sendTileNotification($device, $text1,$text2,$text3)
+		public function sendTileNotificationXML($device, $xml)
 	 	{
-			
+			$body = utf8_encode($xml);
+			$response = $this->sendNotification($device, "Tile",$body);
+	 		return $response;
+		}
+
+		public function sendTileNotification($device, $text1,$text2,$text3)
+	 	{			
 	 	  
 			$text1 = utf8_encode($text1);
 			$text2 = utf8_encode($text2);

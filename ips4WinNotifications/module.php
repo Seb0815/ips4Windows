@@ -80,16 +80,13 @@
 	 		return $response;
 		}
 
-		public function sendTileNotification($device, $text1,$text2,$text3)
+		public function sendTileNotification($device, $text1,$text2,$text3,$text4)
 	 	{			
 	 	  
 			$text1 = utf8_encode($text1);
 			$text2 = utf8_encode($text2);
 			$text3 = utf8_encode($text3);
 			$bodystart = "<tile><visual>";
-			//$bodysmall = "<binding template=\"TileSmall\" hint-textStacking=\"center\"><text hint-align=\"center\" hint-overlay=\"30\"><image src=\"ms-appx:///Assets/Icons/Logo44x44.png\" placement=\"peak\"/><text hint-style=\"body\" hint-align=\"center\">".$text1."</text></binding>";
-			//$bodymedium = "<binding template=\"TileMedium\" hint-textStacking=\"center\"><image src=\"ms-appx:///Assets/Icons/SmallLogo.png\" placement=\"peek\" hint-crop=\"circle\"/><text hint-style=\"base\" hint-align=\"center\">".$text1."</text><text hint-style=\"captionSubtle\" hint-align=\"center\">".$text2."</text></binding>";
-			
 			$bodysmall =  
 					'<binding template="TileSmall">'.
                                 '<text hint-style="base">'.$text1.'</text>'.
@@ -114,7 +111,6 @@
 			$bodyend = "</visual></tile>";
 			
 			$body = $bodystart.$bodysmall.$bodymedium.$bodywide.$bodyend;
-			//$body = $bodystart.$bodymedium.$bodyend;
 			
 						
 	 	   $response = $this->sendNotification($device, "Tile",$body);

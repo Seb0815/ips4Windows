@@ -8,6 +8,7 @@
    		private $header4 = 'X-WNS-Tag: ';
     	private $Debug = false;
     	private $WNSMsgToken = "abc";
+		private $UTF8 = false;
 
     	function __construct($InstanceID)
     	{
@@ -33,6 +34,11 @@
     	{
     	   $this->Debug = $Debug;
 		}
+
+		public function UTF8Convert($UTF8)
+    	{
+    	   $this->UTF8 = $UTF8;
+		}
 		
 		public function SetWNSMsgToken($Token)
     	{
@@ -43,8 +49,12 @@
 
 		public function sendBagdeNotification($device, $Value)
 	 	{
+			if ($this->UTF8)
+			{
+				$Value = utf8_encode($Value);
+			}
 	 	   
-	 	   $body = '<?xml version="1.0" encoding="utf-8"?><badge version="1" value="'.$Value.'"/>';
+		   $body = '<?xml version="1.0" encoding="utf-8"?><badge version="1" value="'.$Value.'"/>';
 	 	  
 	 	   $response = $this->sendNotification($device,"Bagde",$body);
 	 	   return $response;
@@ -52,6 +62,12 @@
 
 		public function sendToastNotification($device,$text1,$text2)
 	 	{
+			if ($this->UTF8)
+			{
+				$text1 = utf8_encode($text1);
+				$text2 = utf8_encode($text2);
+				
+			}
 			
 	 	    $body = "<?xml version=\"1.0\" encoding=\"utf-8\"?><toast><visual><binding template=\"ToastGeneric\"><text>".$text1."</text><text>".$text2."</text></binding></visual></toast>";
 			    	
@@ -59,33 +75,22 @@
 	 	    return $response;
 	 	}
 
-		public function test($device, $text)
-		{
-			$text = utf8_encode($text);
-			$bodystart = "<tile><visual>";
-
-			$bodyend = "</visual></tile>";			
-			
-			$body = $bodystart.$text.$bodyend;
-			
-						
-	 	   $response = $this->sendNotification($device, "Tile",$body);
-	 	   return $response;
-		}
-
+		
 		public function sendTileNotificationXML($device, $xml)
 	 	{
-			$body = utf8_encode($xml);
-			$response = $this->sendNotification($device, "Tile",$body);
+	
+			$response = $this->sendNotification($device, "Tile",$xml);
 	 		return $response;
 		}
 
 		public function sendTileNotification($device, $text1,$text2,$text3,$text4)
 	 	{			
-	 	  
-			$text1 = utf8_encode($text1);
-			$text2 = utf8_encode($text2);
-			$text3 = utf8_encode($text3);
+	 		if ($this->UTF8)
+			{
+				$text1 = utf8_encode($text1);
+				$text2 = utf8_encode($text2);
+				$text3 = utf8_encode($text3);
+			}
 			$bodystart = "<tile><visual>";
 			$bodysmall =  
 					'<binding template="TileSmall">'.

@@ -40,10 +40,12 @@
     	   $this->UTF8 = $UTF8;
 		}
 		
-		public function SetWNSMsgToken($Token)
+		public function SetWNSTileTag($Token)
     	{
-    	
-    	   $this->WNSMsgToken = "abc".$Token;
+    		if(strlen($Token) > 16)
+				echo "Error SetWNSTileTag, Tag is longer than 16 characters!"
+			else
+    			$this->WNSMsgToken = $Token;
 		}
 
 

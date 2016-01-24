@@ -43,7 +43,7 @@
 		public function SetWNSTileTag($Token)
     	{
     		if(strlen($Token) > 16)
-				echo "Error SetWNSTileTag, Tag is longer than 16 characters!"
+				echo "Error SetWNSTileTag, Tag is longer than 16 characters!";
 			else
     			$this->WNSMsgToken = $Token;
 		}

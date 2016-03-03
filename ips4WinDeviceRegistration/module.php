@@ -58,7 +58,7 @@
  				return; 
  			} 
  						 
- 			if(!isset($_POST['deviceName']) || !isset($_POST['deviceType']) || !isset($_POST['deviceFamily']))) { 
+ 			if(!isset($_POST['deviceName']) || !isset($_POST['deviceType']) || !isset($_POST['deviceFamily'])) { 
  				IPS_LogMessage("ips4WinDeviceRegistration", "Malformed data: ".print_r($_POST, true)); 
  				return; 
  			}

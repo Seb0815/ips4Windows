@@ -58,7 +58,7 @@
  				return; 
  			} 
  						 
- 			if(!isset($_POST['deviceName']) || !isset($_POST['deviceType']) || !isset($_POST['deviceFamily']) || !isset($_POST['SecChannel'])) { 
+ 			if(!isset($_POST['deviceName']) || !isset($_POST['deviceType']) || !isset($_POST['deviceFamily']))) { 
  				IPS_LogMessage("ips4WinDeviceRegistration", "Malformed data: ".print_r($_POST, true)); 
  				return; 
  			}
@@ -74,6 +74,20 @@
 			SetValue($this->CreateVariableByIdent($deviceID, "deviceId", "deviceId", 3), utf8_decode($_POST['deviceId'])); 			
 			SetValue($this->CreateVariableByIdent($deviceID, "deviceFamily", "deviceFamily", 3), utf8_decode($_POST['deviceFamily'])); 
  			SetValue($this->CreateVariableByIdent($deviceID, "SecChannelExp", "SecChannelExp", 1, "~UnixTimestamp"), intval(strtotime($_POST['SecChannelExp'])));  			 
+
+			if (isset($_POST['geoID']))
+			{
+				$geoIDName = str_replace("-","",utf8_decode($_POST['geoID']));
+ 				$geoIDName =  str_replace(" ","",$geoIDName);
+
+				$idGeofences = $this->CreateCategoryByIdent($deviceID,$id."#".$geoIDName,"Geofences");
+				$idGeofence = $this->CreateInstanceByIdent($idGeofences,$geoIDName,utf8_decode($_POST['geoID']));
+				SetValue($this->CreateVariableByIdent($idGeofence, "Latitude", "Latitude", 2), floatval($_POST['Latitude'])); 
+	 			SetValue($this->CreateVariableByIdent($idGeofence, "Longitude", "Longitude", 2), floatval($_POST['Longitude'])); 
+				SetValue($this->CreateVariableByIdent($idGeofence, "Timestamp", "Timestamp", 1, "~UnixTimestamp"), intval(strtotime($_POST['date']))); 
+	 			SetValue($this->CreateVariableByIdent($idGeofence, "LocationState", "Status", 0, "~Presence"), intval($_POST['geoPresence']) > 0);  
+
+			}
 
  		} 
 

@@ -410,6 +410,12 @@
 				SetValueString($this->InstanceID,$Content);
 	  			echo "Data successful written\n";
 
+				if (IPS_ModuleExists("{44D8BE09-743E-484F-A64D-154C4235BE94}"))
+				{
+					ips4WNS_sendRawNotification(0,null,"ips4Windows#CortanaRefresh");					
+				}
+
+
 			}
 
 		}

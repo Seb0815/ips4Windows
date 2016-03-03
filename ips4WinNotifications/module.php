@@ -70,7 +70,7 @@
 				$Value = utf8_encode($Value);
 			}
 	 	   
-		   $body = '<?xml version="1.0" encoding="utf-8"?><badge version="1" value="'.$Value.'"/>';
+		   $body = $Value;
 	 	  
 	 	   $response = $this->sendNotification($device,"Raw",$body);
 	 	   return $response;

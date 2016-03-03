@@ -67,20 +67,24 @@
  			$id =  str_replace(" ","",$id);
 			 
  			$deviceID = $this->CreateInstanceByIdent($this->InstanceID, $id, utf8_decode($_POST['deviceName'])."-".utf8_decode($_POST['deviceId'])); 
- 			SetValue($this->CreateVariableByIdent($deviceID, "SecChannel", "SecChannel", 3), utf8_decode($_POST['SecChannel'])); 
-			SetValue($this->CreateVariableByIdent($deviceID, "AccessToken", "AccessToken", 3), utf8_decode($_POST['AccessToken'])); 
+ 			
  			SetValue($this->CreateVariableByIdent($deviceID, "deviceName", "deviceName", 3), utf8_decode($_POST['deviceName'])); 
 			SetValue($this->CreateVariableByIdent($deviceID, "deviceType", "deviceType", 3), utf8_decode($_POST['deviceType'])); 
 			SetValue($this->CreateVariableByIdent($deviceID, "deviceId", "deviceId", 3), utf8_decode($_POST['deviceId'])); 			
 			SetValue($this->CreateVariableByIdent($deviceID, "deviceFamily", "deviceFamily", 3), utf8_decode($_POST['deviceFamily'])); 
- 			SetValue($this->CreateVariableByIdent($deviceID, "SecChannelExp", "SecChannelExp", 1, "~UnixTimestamp"), intval(strtotime($_POST['SecChannelExp'])));  			 
+ 			if (isset($_POST['SecChannel']))
+			{
+				SetValue($this->CreateVariableByIdent($deviceID, "SecChannelExp", "SecChannelExp", 1, "~UnixTimestamp"), intval(strtotime($_POST['SecChannelExp'])));  	
+				SetValue($this->CreateVariableByIdent($deviceID, "SecChannel", "SecChannel", 3), utf8_decode($_POST['SecChannel'])); 
+				SetValue($this->CreateVariableByIdent($deviceID, "AccessToken", "AccessToken", 3), utf8_decode($_POST['AccessToken'])); 		 
+			}
 
 			if (isset($_POST['geoID']))
 			{
 				$geoIDName = str_replace("-","",utf8_decode($_POST['geoID']));
  				$geoIDName =  str_replace(" ","",$geoIDName);
 
-				$idGeofences = $this->CreateCategoryByIdent($deviceID,$id."#".$geoIDName,"Geofences");
+				$idGeofences = $this->CreateCategoryByIdent($deviceID,"Geofences","Geofences");
 				$idGeofence = $this->CreateInstanceByIdent($idGeofences,$geoIDName,utf8_decode($_POST['geoID']));
 				SetValue($this->CreateVariableByIdent($idGeofence, "Latitude", "Latitude", 2), floatval($_POST['Latitude'])); 
 	 			SetValue($this->CreateVariableByIdent($idGeofence, "Longitude", "Longitude", 2), floatval($_POST['Longitude'])); 

@@ -3,6 +3,7 @@
 	{
 
    		private $header1 = 'Content-Type: text/xml';
+		private $headerRaw = 'Content-Type: application/octet-stream';
 		private $header2 = 'X-WNS-Type: ';
    		private $header3 = 'Authorization: Bearer ';
    		private $header4 = 'X-WNS-Tag: ';
@@ -59,6 +60,19 @@
 		   $body = '<?xml version="1.0" encoding="utf-8"?><badge version="1" value="'.$Value.'"/>';
 	 	  
 	 	   $response = $this->sendNotification($device,"Bagde",$body);
+	 	   return $response;
+	 	}
+
+		public function sendRawNotification($device, $Value)
+	 	{
+			if ($this->UTF8)
+			{
+				$Value = utf8_encode($Value);
+			}
+	 	   
+		   $body = '<?xml version="1.0" encoding="utf-8"?><badge version="1" value="'.$Value.'"/>';
+	 	  
+	 	   $response = $this->sendNotification($device,"Raw",$body);
 	 	   return $response;
 	 	}
 
@@ -237,6 +251,8 @@
 						$headers = array($this->header1,$this->header2.'wns/toast',$this->header3.$authToken);				
 					else if ($MsgType == "Tile")
 						$headers = array($this->header1,$this->header2.'wns/tile',$this->header4.$this->WNSMsgToken,$this->header3.$authToken );
+					else if ($MsgType == "Raw")
+						$headers = array($this->headerRaw,$this->header2.'wns/raw',$this->header3.$authToken);	
 
 					if ($this->Debug)
 	 				{

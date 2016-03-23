@@ -86,8 +86,8 @@
 
 				$idGeofences = $this->CreateCategoryByIdent($deviceID,"Geofences","Geofences");
 				$idGeofence = $this->CreateInstanceByIdent($idGeofences,$geoIDName,utf8_decode($_POST['geoID']));
-				SetValue($this->CreateVariableByIdent($idGeofence, "Latitude", "Latitude", 2), floatval($_POST['Latitude'])); 
-	 			SetValue($this->CreateVariableByIdent($idGeofence, "Longitude", "Longitude", 2), floatval($_POST['Longitude'])); 
+				//SetValue($this->CreateVariableByIdent($idGeofence, "Latitude", "Latitude", 2), floatval($_POST['Latitude'])); 
+	 			//SetValue($this->CreateVariableByIdent($idGeofence, "Longitude", "Longitude", 2), floatval($_POST['Longitude'])); 
 				SetValue($this->CreateVariableByIdent($idGeofence, "Timestamp", "Timestamp", 1, "~UnixTimestamp"), intval(strtotime($_POST['date']))); 
 	 			SetValue($this->CreateVariableByIdent($idGeofence, "LocationState", "Status", 0, "~Presence"), intval($_POST['geoPresence']) > 0);  
 

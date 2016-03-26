@@ -91,7 +91,13 @@
 	 	    return $response;
 	 	}
 
-		
+		public function sendToastNotificationXML($device, $xml)
+	 	{
+	
+			$response = $this->sendNotification($device, "Toast",$xml);
+	 		return $response;
+		}
+
 		public function sendTileNotificationXML($device, $xml)
 	 	{
 	
